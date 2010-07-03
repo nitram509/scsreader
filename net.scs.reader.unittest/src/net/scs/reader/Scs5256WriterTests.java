@@ -85,7 +85,7 @@ public class Scs5256WriterTests {
 		scsWtr.write("new page, line 6");
 		scsWtr.endPage();
 		
-		scsWtr.endPage(); // leeres blatt in der Mitte
+		scsWtr.endPage(); // empty page in the middle
 		
 		scsWtr.write("Line #1");scsWtr.newLine();
 		scsWtr.write("Line #2");scsWtr.newLine();
@@ -164,7 +164,7 @@ public class Scs5256WriterTests {
 		float FONT_SIZE = 9.0F;
 		float leading = FONT_SIZE * 1.05F;
 		
-		// Größe, Schriftart und Ränder für die PDF seiten berechnen
+		// calculate font, font size, and margins for the PDF
 		final Font monoSpacedFont = FontFactory.getFont(BaseFont.COURIER, FONT_SIZE);
 		final Font monoSpacedFontBold = FontFactory.getFont(BaseFont.COURIER_BOLD, Font.BOLD);
 //		final float rows = spooledFile.getFloatAttribute(PrintObject.ATTR_PAGELEN);
@@ -197,8 +197,6 @@ public class Scs5256WriterTests {
 		} catch (EndOfFileSignal e) {
 			System.out.println("eof.");
 		}
-		
-		// TODO: vertical positioning testen 
 		
 		pdfprinter.finish();
 		pdfdoc.close();
