@@ -11,7 +11,7 @@ into Text, PDF, RTF or other formats.
 Remarks
 ------------------------------------------------------------------------------
 
-'ATTR_JOBCCSID' is not supported by V5R4 and above.
+'ATTR_JOBCCSID' is not supported by V5R3 and before.
 Thus, older systems do not offer all possibilities to guess the correct CCSID!
 
 
