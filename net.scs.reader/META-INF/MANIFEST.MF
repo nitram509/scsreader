@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SCS Stream Reader
 Bundle-SymbolicName: net.scs.reader
-Bundle-Version: 1.0.0
+Bundle-Version: 0.1.0
 Bundle-Activator: net.scs.reader.Activator
 Import-Package: com.ibm.as400.access,
  com.lowagie.text,
