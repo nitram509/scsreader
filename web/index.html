@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head>
+  <title>SCS Reader</title>
+
+  
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  
+  <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+
+</head><body>
+<div id="wrap">
+<div id="header">
+<h1><a href="#">SCS Reader</a></h1>
+</div>
+<div id="content">
+<div class="right">
+<h3>About<a id="about">&nbsp;</a></h3>
+<p>SCS Reader is an OSGI compatible Java library which
+is able to
+read, parse and transform SCS (SNA Character String) data streams.
+The implementation also offers some converters to transform such
+streams
+into Text, PDF, RTF or other formats. At the current state it supports
+all features of the SCS 5256 printer standard.</p>
+<h3>How it works<a id="howitworks">&nbsp;</a></h3>
+SCS Reader uses the famous
+<a href="http://jt400.sourceforge.net/">JTOpen
+Framework</a> to load the raw spool data stream. While parsing the raw
+bytes, internal printer commands are generated. An virtual printer
+model is fed with these commands. By simulating a printer's print head
+it's also possible to detect bold printed characters (remark: in the
+past, bold fonts where emulated by printing a character twice). Thus
+it's like printing on virtual paper.<br />
+Currently, two different virtual printers are available: Text and PDF.
+Later once uses <a href="http://itextpdf.com/">iText</a> to produce
+the PDF files.<br />
+<h3>License<a id="license">&nbsp;</a></h3>
+<p>
+This project is released under the <a href="http://www.gnu.org/licenses/agpl-3.0.html">GNU AFFERO GENERAL
+PUBLIC LICENSE v3.0</a>.
+</p>
+<hr />
+<p><a href="http://sourceforge.net/projects/scsreader"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=332327&amp;type=13" alt="Get SCS Reader at SourceForge.net. Fast, secure and Free Open Source software downloads" height="30" width="120" /></a>
+<img src="images/agplv3-88x31.png" alt="GNU AFFERO GENERAL PUBLIC LICENSE v3.0" height="31" width="88" /></p>
+</div>
+<div class="left">
+<h4>Project<br />
+</h4>
+<ul>
+  <li><a href="#about">About</a></li>
+  <li><a href="#howitworks">How it works</a></li>
+  <li><a href="#license">License</a></li>
+</ul>
+<h4>Useful Resources</h4>
+<ul>
+  <li><a href="http://sourceforge.net/projects/scsreader">Sourceforge
+project
+site</a> </li>
+</ul>
+</div>
+<div style="clear: both;"> </div>
+</div>
+<div id="footer"> © Copyright by <a href="mailto:master_jaf@users.sourceforge.net">Martin W. Kirst</a> |
+Design by <a href="http://www.blogliber.com/">Blog Liber</a><!-- Please leave Design by link visible or email me at : contact@blogliber.com -->
+</div>
+</div>
+
+</body></html>

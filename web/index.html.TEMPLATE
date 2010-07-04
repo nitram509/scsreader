@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Blue Freshness Template - blogliber.com</title>	
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<body>
+
+<div id="wrap">
+
+<div id="header">
+<h1><a href="#">Your Web Site Title</a></h1>
+<h2>Nice plug about your Web Site</h2>
+</div>
+
+<div id="content">
+
+<div class="right">
+<h3><a href="#">Example Article #1 - This is H3 Heading - Link</a></h3>
+
+<div style="float: left; padding: 15px 10px 0 0;">
+<img src="examplephoto.jpg" alt="Example Photo" />
+</div>
+
+<p>
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas dignissim consectetur porttitor. Integer sed condimentum orci. Aenean id quam a ipsum convallis tincidunt vitae quis lectus. Donec eros sapien, ultrices quis interdum eget, pulvinar et sem. Praesent vel felis nisl, eget volutpat dui. Vestibulum ac lorem massa, vitae blandit mauris.
+Proin at sapien arcu. Integer ut fermentum erat. Suspendisse potenti. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam odio quam, bibendum vitae lacinia ut, sodales ut turpis. Nullam dignissim urna vel risus condimentum in posuere nunc fermentum. 
+</p>
+
+<p>
+Suspendisse potenti. Aliquam hendrerit elit in leo tempor eu molestie orci molestie. Morbi in dolor dolor, eget aliquet turpis. Praesent ultricies velit ac ipsum tristique blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+</p>
+
+<h3>Example Article #2 - This is H3 Heading</h3>
+
+<p>
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus nec arcu quis eros lobortis luctus. Aenean euismod nunc non nisl sodales placerat. Donec nec tellus sit amet tortor sodales consectetur. Donec imperdiet, nisi id venenatis feugiat, magna nunc condimentum magna, eu mollis arcu arcu a nulla. Quisque placerat lacinia lectus, ac facilisis turpis porttitor nec. In hac habitasse platea dictumst. Quisque sed justo sit amet nisi interdum vestibulum. Aliquam sit amet tortor non mauris elementum sagittis. Donec semper scelerisque mauris, a dapibus purus tempor sit amet. 
+</p>
+<ul>
+<li>Cum sociis</li>
+<li>Aliquam hendrerit</li>
+<li>Pellentesque habitant</li>
+<li>Phasellus nec</li>
+<li>Quisque sed justo</li>
+</ul>
+<p>
+Praesent vel felis nisl, eget volutpat dui. Vestibulum ac lorem massa, vitae blandit mauris. Proin at sapien arcu.
+</p>
+
+</div>
+
+<div class="left">
+
+<h4>Menu Navigation</h4>
+<ul>
+<li><a href="#">Proin at</a></li>
+<li><a href="#">Class aptent taciti</a></li>
+<li><a href="#">Morbi in dolor</a></li>
+<li><a href="#">Praesent ultricies</a></li>
+<li><a href="#">Aenean euismod</a></li>
+<li><a href="#">Donec sempe</a></li>
+<li><a href="#">Suspendisse potenti</a></li>
+</ul>
+
+<h4>Useful Resources</h4>
+<ul>
+<li><a href="http://www.florencesightseeing.info">Florence Sightseeing</a></li>
+<li><a href="http://www.ithappened.info">It Happened</a></li>
+<li><a href="http://www.anciv.info">Ancient Civilizations</a></li>
+<li><a href="http://www.medievaltimes.info">Medieval History</a></li>
+<li><a href="http://www.healthhive.info">Health Information</a></li>
+<li><a href="http://www.budgettraveladvice.info">Traveling on a Budget</a></li>
+</ul>
+</div>
+
+<div style="clear: both;"> </div>
+
+</div>
+
+<div id="footer"> 
+&copy; Copyright by <a href="#">You</a> | Design by <a href="http://www.blogliber.com">Blog Liber</a> 
+<!-- Please leave Design by link visible or email me at : contact@blogliber.com -->
+</div>
+
+</div>
+
+</body>
+
+</html>
