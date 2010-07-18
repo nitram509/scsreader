@@ -28,6 +28,14 @@ package net.scs.reader.virtualprinter;
  */
 public class TextPrinter extends AbstractPrinter {
 
+	public TextPrinter() {
+		super(); // allow default constructor
+	}
+
+	public TextPrinter(PrinterConfig printerConfig) {
+		super(printerConfig); // allow configureable constructor
+	}
+
 	/* (non-Javadoc)
 	 * @see net.scs.reader.virtualprinter.AbstractPrinter#formFeed()
 	 */
