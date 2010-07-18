@@ -1,0 +1,2 @@
+ * syntax highlighting is not working
+ * docs only can be created within Eclipse, when running from console, exception is thrown

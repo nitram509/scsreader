@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<project name="scs-reader-doc" default="build-html" basedir=".">
+
+	<description>
+            This Ant buildhtml.xml file is used to transform DocBook XML to html output
+    </description>
+
+	<!--
+      - Configure basic properties that will be used in the file.
+      -->
+	<property name="docbook.xsl.dir" value="docbook-xsl" />
+	<property name="doc.dir" value="output" />
+	<property name="documents" value="documents" />
+	<property name="html.stylesheet" value="${docbook.xsl.dir}/html/docbook.xsl" />
+	<property name="xalan" value="org.apache.xalan.processor.TransformerFactoryImpl" />
+						           
+	<!-- Making xalan available -->
+	<path id="xalan.class.path">
+		<pathelement location="${basedir}/lib/xalan.jar" />
+		<pathelement location="${basedir}/lib/xml-apis.jar" />
+		<pathelement location="${basedir}/lib/serializer.jar" />
+		<pathelement location="${basedir}/lib/xercesImpl.jar" />
+		<pathelement location="${basedir}/lib/xslthl-2.0.2.jar" />
+	</path>
+
+	<target name="init">
+		<property name="configfile" value="file:///${basedir}/docbook-xsl/highlighting/xslthl-config.xml" />
+		<available classname="org.apache.xalan.processor.TransformerFactoryImpl" property="xalan.present" classpathref="xalan.class.path" />
+		<script language="javascript">
+			<![CDATA[
+				importClass(java.lang.System);
+				System.setProperty("xslthl.loglevel", "FINEST");
+				System.setProperty("xslthl.config", configfile);
+			]]>
+		</script>
+	</target>
+	
+	<target name="clean" description="Cleans up generated files.">
+		<delete dir="${doc.dir}" />
+	</target>
+
+	<target name="depends" depends="init">
+		<mkdir dir="${doc.dir}" />
+	</target>
+
+	<target name="-build-no-xalan" unless="xalan.present">
+		<echo>Xalan 2.7 not present in the classpath, not executing!</echo>
+	</target>
+			
+	<target name="build-html" depends="depends,-build-no-xalan" description="Generates HTML files from DocBook XML" if="xalan.present">
+		<description>Iterates through a directory and transforms .xml files into .html files using the DocBook XSL.</description>
+		<script language="javascript">
+			<![CDATA[
+				importClass(java.lang.System);
+				System.setProperty("javax.xml.transform.TransformerFactory", "org.apache.xalan.processor.TransformerFactoryImpl");
+			]]>
+		</script>
+		<xslt
+			classpathref="xalan.class.path"
+			style="${html.stylesheet}"
+			extension=".html"
+			basedir="${documents}"
+			destdir="${doc.dir}"
+			force="true"
+		>
+			<classpath refid="xalan.class.path" />
+			<include name="**/*book.xml" />
+			<include name="**/*article.xml"/>
+			<param name="html.stylesheet" expression="style.css" />
+			<param name="highlight.source" expression="1"/>
+			<param name="xslthl.config" expression="${configfile}" />
+			<outputproperty name="encoding" value="utf-8"/>
+		</xslt>
+		<!-- Copy the stylesheet to the same directory as the HTML files -->
+		<copy todir="${doc.dir}">
+			<fileset dir="lib">
+				<include name="style.css" />
+			</fileset>
+			<fileset dir="${docbook.xsl.dir}">
+				<include name="images/callouts/**/*.png"/>
+			</fileset>
+		</copy>
+
+	</target>
+
+</project>
