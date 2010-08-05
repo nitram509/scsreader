@@ -69,8 +69,6 @@
 			<param name="html.stylesheet" expression="docstyle.css" />
 			<param name="highlight.source" expression="1"/>
 			<param name="xslthl.config" expression="${configfile}" />
-			<param name="chunker.output.doctype-public" expression="-//W3C//DTD HTML 4.01 Transitional//EN" />
-			<param name="chunker.output.doctype-system" expression="http://www.w3.org/TR/html4/loose.dtd" />
 			<outputproperty name="encoding" value="utf-8"/>
 		</xslt>
 		<!-- Copy the stylesheet to the same directory as the HTML files -->
