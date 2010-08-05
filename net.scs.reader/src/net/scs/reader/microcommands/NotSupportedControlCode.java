@@ -22,13 +22,27 @@ import java.io.IOException;
 
 import net.scs.reader.EndOfFileSignal;
 import net.scs.reader.IScsDataProvider;
-import net.scs.reader.UnsupportedControlCodeException;
 
+/**
+ * Represents any code, which is not currently supported by SCS Reader.
+ */
 public class NotSupportedControlCode extends PrinterMicroCommandAdapter {
 
+	private static final int LENGTH = 1;
+	private final byte code;
+	
 	public NotSupportedControlCode(IScsDataProvider dataProvider) throws EndOfFileSignal, IOException {
 		super(dataProvider);
-		throw new UnsupportedControlCodeException(this.offset, dataProvider.getByte());
+		this.code = dataProvider.getByte();
+	}
+
+	@Override
+	public int getLength() {
+		return LENGTH;
+	}
+
+	public byte getCode() {
+		return code;
 	}
 
 }

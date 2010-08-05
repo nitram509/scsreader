@@ -26,6 +26,7 @@ import net.scs.reader.microcommands.CarrigeReturn;
 import net.scs.reader.microcommands.FormFeed;
 import net.scs.reader.microcommands.LineFeed;
 import net.scs.reader.microcommands.NewLine;
+import net.scs.reader.microcommands.NotSupportedControlCode;
 import net.scs.reader.microcommands.NullCmd;
 import net.scs.reader.microcommands.PresentationPageMedia;
 import net.scs.reader.microcommands.PresentationPosition;
@@ -161,6 +162,8 @@ public class SCSStreamReader {
 			default:
 				if (!rdrcfg.ignoreUnknownControlCodes) {
 					throw new UnsupportedControlCodeException(dataProvider.getPosition(), code);
+				} else {
+					ctx.cmd = new NotSupportedControlCode(dataProvider);
 				}
 			}
 		}
@@ -182,6 +185,8 @@ public class SCSStreamReader {
 		case (byte)0xC6:
 			if (!rdrcfg.ignoreUnknownControlCodes) {
 				throw new UnsupportedControlCodeException(dataProvider.getPosition(), (byte)0x2b, code);
+			} else {
+				cmd = new NotSupportedControlCode(dataProvider);
 			}
 			break;
 		case (byte)0xD0:
