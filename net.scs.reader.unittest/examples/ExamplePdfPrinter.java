@@ -16,8 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 
 import net.scs.reader.EndOfFileSignal;
 import net.scs.reader.IPrinterMicroCommand;
@@ -25,40 +24,54 @@ import net.scs.reader.IScsDataProvider;
 import net.scs.reader.ReaderConfig;
 import net.scs.reader.SCSStreamReader;
 import net.scs.reader.dataprovider.As400ScsDataProviderFactory;
+import net.scs.reader.virtualprinter.PdfPrinter;
 import net.scs.reader.virtualprinter.PrinterConfig;
-import net.scs.reader.virtualprinter.TextPrinter;
 
 import com.ibm.as400.access.SpooledFile;
+import com.lowagie.text.Document;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Rectangle;
+import com.lowagie.text.pdf.BaseFont;
+import com.lowagie.text.pdf.PdfWriter;
 
-public class ExampleTextPrinter {
+public class ExamplePdfPrinter {
 
 	public static void main(String[] args) throws Exception {
 		SpooledFile spooledFile = null; // TODO: provide your spool file!
 		final IScsDataProvider dp = As400ScsDataProviderFactory.getPrintObjectDataProvider(spooledFile);
-		final ReaderConfig rcfg = new ReaderConfig.Builder()
-				.collectPrintableChars(true)
-				.ignoreUnknownControlCodes(false)
-				.ignoreNulls(false)
-				.getConfig();
+		final ReaderConfig rcfg = ReaderConfig.getDefault();
 		final SCSStreamReader reader = new SCSStreamReader(dp, rcfg);
 
 		PrinterConfig pcfg = PrinterConfig.getDefault();
-		TextPrinter printer = new TextPrinter(pcfg);
+		float FONT_SIZE = 9.0F;
+		float leading = FONT_SIZE * 1.05F;
+		
+		// calculate font, font size, and margins for the PDF
+		final Font monoSpacedFont = FontFactory.getFont(BaseFont.COURIER, FONT_SIZE);
+		final Font monoSpacedFontBold = FontFactory.getFont(BaseFont.COURIER_BOLD, Font.BOLD);
+		Rectangle pageSize = new Rectangle(PageSize.A4);
+		final Document pdfdoc = new Document(pageSize);
 
+		final FileOutputStream fos = new FileOutputStream("test.pdf");
+		final PdfWriter pdfwriter = PdfWriter.getInstance(pdfdoc, fos);
+		pdfdoc.open();
+		
+		PdfPrinter pdfprinter = new PdfPrinter(pcfg, pdfdoc, monoSpacedFont, monoSpacedFontBold, leading);
+		
 		try {
 			while (reader.hasNext()) {
 				final IPrinterMicroCommand event = reader.next();
 				if (event == null) break;
-				printer.runMicroCommand(event);
+				pdfprinter.runMicroCommand(event);
 			}
 		} catch (EndOfFileSignal e) {
 			System.out.println("eof.");
 		}
-
-		printer.finish();
-
-		FileWriter fw = new FileWriter(new File("test.txt"));
-		printer.writeText(fw);
-		fw.close();
+		
+		pdfprinter.finish();
+		pdfdoc.close();
+		pdfwriter.close();
 	}
 }
