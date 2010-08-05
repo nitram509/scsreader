@@ -117,6 +117,90 @@ public class ExampleTextPrinter {
 		
 		<sect2 id="sect.examplepdf">
 			<title>Example <abbrev>PDF</abbrev>-Printer</title>
+						<programlistingco>
+			
+			<areaspec>
+				<area id="ex.spooledfile.pdf" coords="18" />
+				<areaset id="ex.1" coords="">
+					<area id="ex.1.1" coords="1"/>
+					<area id="ex.1.2" coords="2"/>
+					<area id="ex.1.3" coords="3"/>
+					<area id="ex.1.4" coords="4"/>
+				</areaset>
+			</areaspec>
+			
+			<programlisting language="java" format="linespecific" >
+import java.io.FileOutputStream;
+
+import net.scs.reader.EndOfFileSignal;
+import net.scs.reader.IPrinterMicroCommand;
+import net.scs.reader.IScsDataProvider;
+import net.scs.reader.ReaderConfig;
+import net.scs.reader.SCSStreamReader;
+import net.scs.reader.dataprovider.As400ScsDataProviderFactory;
+import net.scs.reader.virtualprinter.PdfPrinter;
+import net.scs.reader.virtualprinter.PrinterConfig;
+
+import com.ibm.as400.access.SpooledFile;
+import com.lowagie.text.Document;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Rectangle;
+import com.lowagie.text.pdf.BaseFont;
+import com.lowagie.text.pdf.PdfWriter;
+
+public class ExamplePdfPrinter {
+
+	public static void main(String[] args) throws Exception {
+		SpooledFile spooledFile = null; // TODO: provide your spool file!
+		final IScsDataProvider dp = As400ScsDataProviderFactory.getPrintObjectDataProvider(spooledFile);
+		final ReaderConfig rcfg = ReaderConfig.getDefault();
+		final SCSStreamReader reader = new SCSStreamReader(dp, rcfg);
+
+		PrinterConfig pcfg = PrinterConfig.getDefault();
+		float FONT_SIZE = 9.0F;
+		float leading = FONT_SIZE * 1.05F;
+		
+		// calculate font, font size, and margins for the PDF
+		final Font monoSpacedFont = FontFactory.getFont(BaseFont.COURIER, FONT_SIZE);
+		final Font monoSpacedFontBold = FontFactory.getFont(BaseFont.COURIER_BOLD, Font.BOLD);
+		Rectangle pageSize = new Rectangle(PageSize.A4);
+		final Document pdfdoc = new Document(pageSize);
+
+		final FileOutputStream fos = new FileOutputStream("test.pdf");
+		final PdfWriter pdfwriter = PdfWriter.getInstance(pdfdoc, fos);
+		pdfdoc.open();
+		
+		PdfPrinter pdfprinter = new PdfPrinter(pcfg, pdfdoc, monoSpacedFont, monoSpacedFontBold, leading);
+		
+		try {
+			while (reader.hasNext()) {
+				final IPrinterMicroCommand event = reader.next();
+				if (event == null) break;
+				pdfprinter.runMicroCommand(event);
+			}
+		} catch (EndOfFileSignal e) {
+			System.out.println("eof.");
+		}
+		
+		pdfprinter.finish();
+		pdfdoc.close();
+		pdfwriter.close();
+	}
+}
+			</programlisting>
+			
+			<calloutlist>
+			<callout arearefs="ex.spooledfile.pdf">
+				<para>provide your spooled file here</para>
+			</callout>
+			<callout arearefs="ex.1">
+				<para>provide your spooled file here</para>
+			</callout>
+			</calloutlist>
+			
+			</programlistingco>
 			<para>
 			</para>
 		</sect2>
