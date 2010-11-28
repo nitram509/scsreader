@@ -40,3 +40,4 @@ Import-Package: com.ibm.as400.access,
  com.lowagie.text.xml.xmp,
  com.lowagie.tools
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: http://scsreader.sourceforge.net
