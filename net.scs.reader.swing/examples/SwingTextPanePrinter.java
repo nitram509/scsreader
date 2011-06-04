@@ -17,19 +17,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*******************************************************************************
- * Copyright (c) 2000, 2004 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     IBM Corporation - initial API and implementation
- *******************************************************************************/
-
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Font;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 
 import net.scs.reader.EndOfFileSignal;
 import net.scs.reader.IPrinterMicroCommand;
@@ -38,72 +34,66 @@ import net.scs.reader.ReaderConfig;
 import net.scs.reader.SCSStreamReader;
 import net.scs.reader.dataprovider.InputStreamDataProvider;
 import net.scs.reader.virtualprinter.PrinterConfig;
-import net.scs.reader.virtualprinter.SwtPrinter;
-
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
+import net.scs.reader.virtualprinter.SwingPrinter;
 
 import com.ibm.as400.access.SCS5256Writer;
 
-/*
- * Based on Snippet163.java on http://www.eclipse.org/swt/snippets/
- */
-
 /**
- * Simple Example, how to use the SCS Reader within a SWT StyledText editor.
+ * Simple Example, how to use the SCS Reader within a Swing JTextPane editor.
  */
-public class SwtStyledTextPrinter {
-	
+public class SwingTextPanePrinter {
+
 	private final static int CCSID = 1141;
-	
+
 	private ByteArrayOutputStream baos;
 
-	private StyledText styledtext;
+	private JTextPane textpane;
 
 	public static void main(String[] args) {
-		Display display = new Display();
-		Shell shell = new Shell(display);
-		SwtStyledTextPrinter main = new SwtStyledTextPrinter();
+		SwingTextPanePrinter pgm = new SwingTextPanePrinter();
 		try {
-			main.run(shell);
+			pgm.setupPageData();
+			JFrame frame = pgm.initLayout();
+			pgm.run();
+			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		shell.pack();
-		shell.open();
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch())
-				display.sleep();
-		}
-		display.dispose();
 	}
 
-	private void run(Shell shell) throws Exception {
-		
-		initLayout(shell);
-		setupPageData();
-		
-		final ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+	private JFrame initLayout() throws Exception {
+		JFrame frame = new JFrame("net.scs.reader Swing example");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Container content = frame.getContentPane();
+		textpane = new JTextPane();
+		textpane.setEditable(false);
+		Font font = Font.getFont("Courier New");
+		textpane.setFont(font);
+		JScrollPane scrollPane = new JScrollPane(textpane);
+		content.add(scrollPane, BorderLayout.CENTER);
+		frame.setSize(400, 300);
+		return frame;
+	}
+
+	private void run() throws Exception {
+
+		final ByteArrayInputStream bais = new ByteArrayInputStream(
+				baos.toByteArray());
 		final IScsDataProvider dp = new InputStreamDataProvider(bais, CCSID);
-		
+
 		final ReaderConfig rcfg = new ReaderConfig.Builder()
-				.collectPrintableChars(true)
-				.ignoreUnknownControlCodes(false)
-				.ignoreNulls(false)
-				.getConfig();
+				.collectPrintableChars(true).ignoreUnknownControlCodes(false)
+				.ignoreNulls(false).getConfig();
 		final SCSStreamReader reader = new SCSStreamReader(dp, rcfg);
 
 		PrinterConfig pcfg = PrinterConfig.getDefault();
-		SwtPrinter printer = new SwtPrinter(pcfg);
+		SwingPrinter printer = new SwingPrinter(pcfg);
 
 		try {
 			while (reader.hasNext()) {
 				final IPrinterMicroCommand event = reader.next();
-				if (event == null) break;
+				if (event == null)
+					break;
 				printer.runMicroCommand(event);
 			}
 		} catch (EndOfFileSignal e) {
@@ -111,19 +101,11 @@ public class SwtStyledTextPrinter {
 		}
 
 		printer.finish();
-		printer.writeStyledText(styledtext);
+		printer.writeTextPane(textpane);
 	}
 
-	private void initLayout(Shell shell) {
-		final Display display = shell.getDisplay();
-		
-		shell.setLayout(new FillLayout());
-		styledtext = new StyledText(shell, SWT.BORDER);
-		styledtext.setFont(new Font(display, "Courier New", 10, SWT.NORMAL));
-	}
-	
 	public void setupPageData() throws Exception {
-		
+
 		baos = new ByteArrayOutputStream();
 
 		SCS5256Writer scsWtr = new SCS5256Writer(baos, CCSID);

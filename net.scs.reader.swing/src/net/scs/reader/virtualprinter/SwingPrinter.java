@@ -20,8 +20,14 @@ package net.scs.reader.virtualprinter;
 
 import java.io.IOException;
 
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+
 /**
- * Prints on a {@link StyledText} widget. Is able to display bold printing.
+ * Prints on a {@link JTextPane} widget. Is able to display bold printing.
  * I'ts recommended to use a fixed width (monospaced) font.
  */
 public class SwingPrinter extends AbstractPrinter {
@@ -37,44 +43,47 @@ public class SwingPrinter extends AbstractPrinter {
 	/**
 	 * Put the text on the widget ...
 	 * 
-	 * @param styledText
+	 * @param textpane
 	 * @throws IOException
 	 */
-	public void writeStyledText(Object styledText) throws IOException {
-//		final StringWriter sw = new StringWriter();
-//		final List<StyleRange> ranges = new ArrayList<StyleRange>();
-//		int globalpos = 0;
-//		for (VirtualLine vline : lines) {
-//			// print first
-//			sw.write(vline.toString());
-//			sw.write(printerConfig.NL);
-//			// calculate style ranges ...
-//			vline.position(0);
-//			boolean isbold = false;
-//			int linepos = 0;
-//			while (vline.hasNext()) {
-//				final EnhancedCharacter echar = vline.next();
-//				if (isbold == echar.isBold()) {
-//					linepos += 1; 
-//				} else {
-//					if (isbold) {
-//						ranges.add(new StyleRange(globalpos, linepos, null, null, SWT.BOLD));
-//					}
-//					globalpos += linepos;
-//					linepos = 1;
-//					isbold = !isbold; // flip it
-//				}
-//			}
-//			if (isbold) {
-//				ranges.add(new StyleRange(globalpos, linepos, null, null, SWT.BOLD));
-//			}
-//			globalpos += linepos + printerConfig.NL.length();
-//		}
-//		// set information on the widget
-//		styledText.setText(sw.toString());
-//		for (StyleRange sr : ranges) {
-//			styledText.setStyleRange(sr);
-//		}
+	public void writeTextPane(JTextPane textpane) throws IOException {
+		SimpleAttributeSet attr = new SimpleAttributeSet();
+		StyleConstants.setBold(attr, true);
+		Document doc = textpane.getStyledDocument();
+		
+		for (VirtualLine line : lines) {
+			line.position(0);
+			StringBuilder sb = new StringBuilder();
+			boolean isbold = false;
+			while (line.hasNext()) {
+				final EnhancedCharacter echar = line.next();
+				if (isbold == echar.isBold()) {
+					sb.append(echar.getChar());
+				} else {
+					attr = new SimpleAttributeSet();
+					StyleConstants.setBold(attr, isbold);
+					try {
+						doc.insertString(doc.getLength(), sb.toString(), attr);
+					} catch (BadLocationException e) {
+						// transform into RuntimeException
+						throw new RuntimeException(e);
+					}
+					
+					sb = new StringBuilder();
+					sb.append(echar.getChar());
+					isbold = !isbold; // flip it
+				}
+			}
+			attr = new SimpleAttributeSet();
+			StyleConstants.setBold(attr, isbold);
+			try {
+				doc.insertString(doc.getLength(), sb.toString() + printerConfig.NL, attr);
+			} catch (BadLocationException e) {
+				// transform into RuntimeException
+				throw new RuntimeException(e);
+			}
+		}
+		
 	}
 	
 }
