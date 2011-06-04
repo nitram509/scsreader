@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SCS Stream Reader - SWT Utils
 Bundle-SymbolicName: net.scs.reader.swt
-Bundle-Version: 0.1.2
+Bundle-Version: 0.1.3
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: http://scsreader.sourceforge.net
 Require-Bundle: net.scs.reader;bundle-version="0.1.0",
