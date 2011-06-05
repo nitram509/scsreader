@@ -1,0 +1,26 @@
+
+SCS Reader - ChangeLog
+======================
+
+v0.1.3
+------
+'Released 5.Jun.2011'
+
+* added new plugin, net.scs.reader.swing
+* changed documenation from Docbook to ASCIIDoc
+
+v0.1.2
+------
+'Released 28.Nov.2010'
+
+* added new plugin, net.scs.reader.swt
+
+v0.1.1
+------
+* bug fix 3025796 (Ingore unknonw command codes is not working)
+
+v0.1.0
+------
+'Released 2.Jul.2010'
+
+* initial release

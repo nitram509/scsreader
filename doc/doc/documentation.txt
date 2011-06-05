@@ -1,5 +1,5 @@
-SCS Reader Documentation
-========================
+SCS Reader - Documentation
+==========================
 Martin W. Kirst <master_jaf@users.sourceforge.net>
 v1.0, 2011-06
 

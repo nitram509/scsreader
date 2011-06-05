@@ -2,6 +2,10 @@
  SCS Reader - ChangeLog
 ===============================================================================
 
+--- v0.1.3 --------------------------------------------------------------------
+ * added new plugin, net.scs.reader.swing
+ * changed documenation from Docbook to ASCIIDoc
+
 --- v0.1.2 --------------------------------------------------------------------
  * added new plugin, net.scs.reader.swt
 
