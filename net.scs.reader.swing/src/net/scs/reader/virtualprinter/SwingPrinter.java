@@ -1,6 +1,6 @@
 /*
  * SCS Reader
- * Copyright (C) 2010  Martin W. Kirst
+ * Copyright (C) 2011  Martin W. Kirst
  *                     (master_jaf at users dot sourceforge dot net)
  * 
  * This program is free software: you can redistribute it and/or modify
