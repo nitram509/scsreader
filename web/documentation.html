@@ -748,55 +748,56 @@ library in multilingual environments.</p></div>
 <h2 id="_example_text_printer">Example Text-Printer</h2>
 <div class="sectionbody">
 <div class="listingblock">
-<div class="title">Java example source</div>
-<div class="content">
-<pre><tt>import java.io.File;
-import java.io.FileWriter;
+<div class="content"><!-- Generator: GNU source-highlight 2.1.2
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">import</span></span> java<span style="color: #990000">.</span>io<span style="color: #990000">.</span>File<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> java<span style="color: #990000">.</span>io<span style="color: #990000">.</span>FileWriter<span style="color: #990000">;</span>
 
-import net.scs.reader.EndOfFileSignal;
-import net.scs.reader.IPrinterMicroCommand;
-import net.scs.reader.IScsDataProvider;
-import net.scs.reader.ReaderConfig;
-import net.scs.reader.SCSStreamReader;
-import net.scs.reader.dataprovider.As400ScsDataProviderFactory;
-import net.scs.reader.virtualprinter.PrinterConfig;
-import net.scs.reader.virtualprinter.TextPrinter;
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>EndOfFileSignal<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>IPrinterMicroCommand<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>IScsDataProvider<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>ReaderConfig<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>SCSStreamReader<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>dataprovider<span style="color: #990000">.</span>As400ScsDataProviderFactory<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>virtualprinter<span style="color: #990000">.</span>PrinterConfig<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>virtualprinter<span style="color: #990000">.</span>TextPrinter<span style="color: #990000">;</span>
 
-import com.ibm.as400.access.SpooledFile;
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> com<span style="color: #990000">.</span>ibm<span style="color: #990000">.</span>as400<span style="color: #990000">.</span>access<span style="color: #990000">.</span>SpooledFile<span style="color: #990000">;</span>
 
-public class ExampleTextPrinter {
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> ExampleTextPrinter <span style="color: #FF0000">{</span>
 
-        public static void main(String[] args) throws Exception {
-                SpooledFile spooledFile = null; // TODO: provide your spool file!                                 <b>&lt;1&gt;</b>
-                final IScsDataProvider dp = As400ScsDataProviderFactory.getPrintObjectDataProvider(spooledFile);
-                final ReaderConfig rcfg = new ReaderConfig.Builder()
-                                .collectPrintableChars(true)
-                                .ignoreUnknownControlCodes(false)
-                                .ignoreNulls(false)
-                                .getConfig();
-                final SCSStreamReader reader = new SCSStreamReader(dp, rcfg);
+        <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">(</span>String<span style="color: #990000">[</span><span style="color: #990000">]</span> args<span style="color: #990000">)</span> <span style="font-weight: bold"><span style="color: #0000FF">throws</span></span> Exception <span style="color: #FF0000">{</span>
+                SpooledFile spooledFile <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">null</span></span><span style="color: #990000">;</span> <span style="font-style: italic"><span style="color: #9A1900">//</span></span><span style="font-style: italic"><span style="color: #9A1900"> TODO: provide your spool file!                                 <b>&lt;1&gt;</b></span></span>
+                <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> IScsDataProvider dp <span style="color: #990000">=</span> As400ScsDataProviderFactory<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">getPrintObjectDataProvider</span></span><span style="color: #990000">(</span>spooledFile<span style="color: #990000">)</span><span style="color: #990000">;</span>
+                <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> ReaderConfig rcfg <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> ReaderConfig<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">Builder</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span>
+                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">collectPrintableChars</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">true</span></span><span style="color: #990000">)</span>
+                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">ignoreUnknownControlCodes</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">false</span></span><span style="color: #990000">)</span>
+                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">ignoreNulls</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">false</span></span><span style="color: #990000">)</span>
+                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">getConfig</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
+                <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> SCSStreamReader reader <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="font-weight: bold"><span style="color: #000000">SCSStreamReader</span></span><span style="color: #990000">(</span>dp<span style="color: #990000">,</span> rcfg<span style="color: #990000">)</span><span style="color: #990000">;</span>
 
-                PrinterConfig pcfg = PrinterConfig.getDefault();
-                TextPrinter printer = new TextPrinter(pcfg);
+                PrinterConfig pcfg <span style="color: #990000">=</span> PrinterConfig<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">getDefault</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
+                TextPrinter printer <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="font-weight: bold"><span style="color: #000000">TextPrinter</span></span><span style="color: #990000">(</span>pcfg<span style="color: #990000">)</span><span style="color: #990000">;</span>
 
-                try {
-                        while (reader.hasNext()) {
-                                final IPrinterMicroCommand event = reader.next();
-                                if (event == null) break;
-                                printer.runMicroCommand(event);
-                        }
-                } catch (EndOfFileSignal e) {
-                        System.out.println("eof.");
-                }
+                <span style="font-weight: bold"><span style="color: #0000FF">try</span></span> <span style="color: #FF0000">{</span>
+                        <span style="font-weight: bold"><span style="color: #0000FF">while</span></span> <span style="color: #990000">(</span>reader<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">hasNext</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span><span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+                                <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> IPrinterMicroCommand event <span style="color: #990000">=</span> reader<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">next</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
+                                <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>event <span style="color: #990000">=</span><span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">null</span></span><span style="color: #990000">)</span> <span style="font-weight: bold"><span style="color: #0000FF">break</span></span><span style="color: #990000">;</span>
+                                printer<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">runMicroCommand</span></span><span style="color: #990000">(</span>event<span style="color: #990000">)</span><span style="color: #990000">;</span>
+                        <span style="color: #FF0000">}</span>
+                <span style="color: #FF0000">}</span> <span style="font-weight: bold"><span style="color: #0000FF">catch</span></span> <span style="color: #990000">(</span>EndOfFileSignal e<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+                        System<span style="color: #990000">.</span>out<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">println</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"eof."</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
+                <span style="color: #FF0000">}</span>
 
-                printer.finish();
+                printer<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">finish</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
 
-                FileWriter fw = new FileWriter(new File("test.txt"));
-                printer.writeText(fw);
-                fw.close();
-        }
-}</tt></pre>
-</div></div>
+                FileWriter fw <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="font-weight: bold"><span style="color: #000000">FileWriter</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="font-weight: bold"><span style="color: #000000">File</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"test.txt"</span><span style="color: #990000">)</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
+                printer<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">writeText</span></span><span style="color: #990000">(</span>fw<span style="color: #990000">)</span><span style="color: #990000">;</span>
+                fw<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">close</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
+        <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
 <div class="colist arabic"><ol>
 <li>
 <p>
@@ -810,67 +811,68 @@ provide your spooled file here
 <h2 id="_example_pdf_printer">Example PDF-Printer</h2>
 <div class="sectionbody">
 <div class="listingblock">
-<div class="title">Java example source</div>
-<div class="content">
-<pre><tt>import java.io.FileOutputStream;
+<div class="content"><!-- Generator: GNU source-highlight 2.1.2
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">import</span></span> java<span style="color: #990000">.</span>io<span style="color: #990000">.</span>FileOutputStream<span style="color: #990000">;</span>
 
-import net.scs.reader.EndOfFileSignal;
-import net.scs.reader.IPrinterMicroCommand;
-import net.scs.reader.IScsDataProvider;
-import net.scs.reader.ReaderConfig;
-import net.scs.reader.SCSStreamReader;
-import net.scs.reader.dataprovider.As400ScsDataProviderFactory;
-import net.scs.reader.virtualprinter.PdfPrinter;
-import net.scs.reader.virtualprinter.PrinterConfig;
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>EndOfFileSignal<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>IPrinterMicroCommand<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>IScsDataProvider<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>ReaderConfig<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>SCSStreamReader<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>dataprovider<span style="color: #990000">.</span>As400ScsDataProviderFactory<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>virtualprinter<span style="color: #990000">.</span>PdfPrinter<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> net<span style="color: #990000">.</span>scs<span style="color: #990000">.</span>reader<span style="color: #990000">.</span>virtualprinter<span style="color: #990000">.</span>PrinterConfig<span style="color: #990000">;</span>
 
-import com.ibm.as400.access.SpooledFile;
-import com.lowagie.text.Document;
-import com.lowagie.text.Font;
-import com.lowagie.text.FontFactory;
-import com.lowagie.text.PageSize;
-import com.lowagie.text.Rectangle;
-import com.lowagie.text.pdf.BaseFont;
-import com.lowagie.text.pdf.PdfWriter;
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> com<span style="color: #990000">.</span>ibm<span style="color: #990000">.</span>as400<span style="color: #990000">.</span>access<span style="color: #990000">.</span>SpooledFile<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> com<span style="color: #990000">.</span>lowagie<span style="color: #990000">.</span>text<span style="color: #990000">.</span>Document<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> com<span style="color: #990000">.</span>lowagie<span style="color: #990000">.</span>text<span style="color: #990000">.</span>Font<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> com<span style="color: #990000">.</span>lowagie<span style="color: #990000">.</span>text<span style="color: #990000">.</span>FontFactory<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> com<span style="color: #990000">.</span>lowagie<span style="color: #990000">.</span>text<span style="color: #990000">.</span>PageSize<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> com<span style="color: #990000">.</span>lowagie<span style="color: #990000">.</span>text<span style="color: #990000">.</span>Rectangle<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> com<span style="color: #990000">.</span>lowagie<span style="color: #990000">.</span>text<span style="color: #990000">.</span>pdf<span style="color: #990000">.</span>BaseFont<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> com<span style="color: #990000">.</span>lowagie<span style="color: #990000">.</span>text<span style="color: #990000">.</span>pdf<span style="color: #990000">.</span>PdfWriter<span style="color: #990000">;</span>
 
-public class ExamplePdfPrinter {
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> ExamplePdfPrinter <span style="color: #FF0000">{</span>
 
-        public static void main(String[] args) throws Exception {
-                SpooledFile spooledFile = null; // TODO: provide your spool file!                                 <b>&lt;1&gt;</b>
-                final IScsDataProvider dp = As400ScsDataProviderFactory.getPrintObjectDataProvider(spooledFile);
-                final ReaderConfig rcfg = ReaderConfig.getDefault();
-                final SCSStreamReader reader = new SCSStreamReader(dp, rcfg);
+        <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">(</span>String<span style="color: #990000">[</span><span style="color: #990000">]</span> args<span style="color: #990000">)</span> <span style="font-weight: bold"><span style="color: #0000FF">throws</span></span> Exception <span style="color: #FF0000">{</span>
+                SpooledFile spooledFile <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">null</span></span><span style="color: #990000">;</span> <span style="font-style: italic"><span style="color: #9A1900">//</span></span><span style="font-style: italic"><span style="color: #9A1900"> TODO: provide your spool file!                                 <b>&lt;1&gt;</b></span></span>
+                <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> IScsDataProvider dp <span style="color: #990000">=</span> As400ScsDataProviderFactory<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">getPrintObjectDataProvider</span></span><span style="color: #990000">(</span>spooledFile<span style="color: #990000">)</span><span style="color: #990000">;</span>
+                <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> ReaderConfig rcfg <span style="color: #990000">=</span> ReaderConfig<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">getDefault</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
+                <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> SCSStreamReader reader <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="font-weight: bold"><span style="color: #000000">SCSStreamReader</span></span><span style="color: #990000">(</span>dp<span style="color: #990000">,</span> rcfg<span style="color: #990000">)</span><span style="color: #990000">;</span>
 
-                PrinterConfig pcfg = PrinterConfig.getDefault();
-                float FONT_SIZE = 9.0F;
-                float leading = FONT_SIZE * 1.05F;
+                PrinterConfig pcfg <span style="color: #990000">=</span> PrinterConfig<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">getDefault</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
+                <span style="color: #009900">float</span> FONT_SIZE <span style="color: #990000">=</span> <span style="color: #993399">9</span><span style="color: #990000">.</span>0F<span style="color: #990000">;</span>
+                <span style="color: #009900">float</span> leading <span style="color: #990000">=</span> FONT_SIZE <span style="color: #990000">*</span> <span style="color: #993399">1</span><span style="color: #990000">.</span>05F<span style="color: #990000">;</span>
 
-                // calculate font, font size, and margins for the PDF
-                final Font monoSpacedFont = FontFactory.getFont(BaseFont.COURIER, FONT_SIZE);
-                final Font monoSpacedFontBold = FontFactory.getFont(BaseFont.COURIER_BOLD, Font.BOLD);
-                Rectangle pageSize = new Rectangle(PageSize.A4);
-                final Document pdfdoc = new Document(pageSize);
+                <span style="font-style: italic"><span style="color: #9A1900">//</span></span><span style="font-style: italic"><span style="color: #9A1900"> calculate font, font size, and margins for the PDF</span></span>
+                <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> Font monoSpacedFont <span style="color: #990000">=</span> FontFactory<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">getFont</span></span><span style="color: #990000">(</span>BaseFont<span style="color: #990000">.</span>COURIER<span style="color: #990000">,</span> FONT_SIZE<span style="color: #990000">)</span><span style="color: #990000">;</span>
+                <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> Font monoSpacedFontBold <span style="color: #990000">=</span> FontFactory<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">getFont</span></span><span style="color: #990000">(</span>BaseFont<span style="color: #990000">.</span>COURIER_BOLD<span style="color: #990000">,</span> Font<span style="color: #990000">.</span>BOLD<span style="color: #990000">)</span><span style="color: #990000">;</span>
+                Rectangle pageSize <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="font-weight: bold"><span style="color: #000000">Rectangle</span></span><span style="color: #990000">(</span>PageSize<span style="color: #990000">.</span>A4<span style="color: #990000">)</span><span style="color: #990000">;</span>
+                <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> Document pdfdoc <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="font-weight: bold"><span style="color: #000000">Document</span></span><span style="color: #990000">(</span>pageSize<span style="color: #990000">)</span><span style="color: #990000">;</span>
 
-                final FileOutputStream fos = new FileOutputStream("test.pdf");
-                final PdfWriter pdfwriter = PdfWriter.getInstance(pdfdoc, fos);
-                pdfdoc.open();
+                <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> FileOutputStream fos <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="font-weight: bold"><span style="color: #000000">FileOutputStream</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"test.pdf"</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
+                <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> PdfWriter pdfwriter <span style="color: #990000">=</span> PdfWriter<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">getInstance</span></span><span style="color: #990000">(</span>pdfdoc<span style="color: #990000">,</span> fos<span style="color: #990000">)</span><span style="color: #990000">;</span>
+                pdfdoc<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">open</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
 
-                PdfPrinter pdfprinter = new PdfPrinter(pcfg, pdfdoc, monoSpacedFont, monoSpacedFontBold, leading);
+                PdfPrinter pdfprinter <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="font-weight: bold"><span style="color: #000000">PdfPrinter</span></span><span style="color: #990000">(</span>pcfg<span style="color: #990000">,</span> pdfdoc<span style="color: #990000">,</span> monoSpacedFont<span style="color: #990000">,</span> monoSpacedFontBold<span style="color: #990000">,</span> leading<span style="color: #990000">)</span><span style="color: #990000">;</span>
 
-                try {
-                        while (reader.hasNext()) {
-                                final IPrinterMicroCommand event = reader.next();
-                                if (event == null) break;
-                                pdfprinter.runMicroCommand(event);
-                        }
-                } catch (EndOfFileSignal e) {
-                        System.out.println("eof.");
-                }
+                <span style="font-weight: bold"><span style="color: #0000FF">try</span></span> <span style="color: #FF0000">{</span>
+                        <span style="font-weight: bold"><span style="color: #0000FF">while</span></span> <span style="color: #990000">(</span>reader<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">hasNext</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span><span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+                                <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> IPrinterMicroCommand event <span style="color: #990000">=</span> reader<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">next</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
+                                <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>event <span style="color: #990000">=</span><span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">null</span></span><span style="color: #990000">)</span> <span style="font-weight: bold"><span style="color: #0000FF">break</span></span><span style="color: #990000">;</span>
+                                pdfprinter<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">runMicroCommand</span></span><span style="color: #990000">(</span>event<span style="color: #990000">)</span><span style="color: #990000">;</span>
+                        <span style="color: #FF0000">}</span>
+                <span style="color: #FF0000">}</span> <span style="font-weight: bold"><span style="color: #0000FF">catch</span></span> <span style="color: #990000">(</span>EndOfFileSignal e<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+                        System<span style="color: #990000">.</span>out<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">println</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"eof."</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
+                <span style="color: #FF0000">}</span>
 
-                pdfprinter.finish();
-                pdfdoc.close();
-                pdfwriter.close();
-        }</tt></pre>
-</div></div>
+                pdfprinter<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">finish</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
+                pdfdoc<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">close</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
+                pdfwriter<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">close</span></span><span style="color: #990000">(</span><span style="color: #990000">)</span><span style="color: #990000">;</span>
+        <span style="color: #FF0000">}</span></tt></pre></div></div>
 <div class="colist arabic"><ol>
 <li>
 <p>
@@ -983,7 +985,7 @@ you should be able to start hacking on this project.</p></div>
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br />
-Last updated 2011-06-05 15:04:24 Mitteleuropäische Sommerzeit
+Last updated 2011-06-12 15:04:39 Mitteleuropäische Sommerzeit
 </div>
 </div>
 </body>
