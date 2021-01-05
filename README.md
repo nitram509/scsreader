@@ -204,6 +204,9 @@ you should be able to start hacking on this project.
 
 ' title Feature sets per printer type, ordered/shown in hierarchical order
 
+skinparam backgroundColor #ffffff
+skinparam handwritten true
+
 Object Printer_5256
 Object Printer_5224
 Object Printer_5219
