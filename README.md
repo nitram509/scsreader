@@ -1,7 +1,6 @@
 SCS Reader - Documentation
 ==========================
-Martin W. Kirst <master_jaf@users.sourceforge.net>
-v1.0, 2011-06
+Martin W. Kirst v1.0, 2011-06
 
 
 Abstract
@@ -204,7 +203,7 @@ you should be able to start hacking on this project.
 
 ' title Feature sets per printer type, ordered/shown in hierarchical order
 
-skinparam backgroundColor #ffffff
+skinparam backgroundColor #fefefe
 skinparam handwritten true
 
 Object Printer_5256
