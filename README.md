@@ -4,11 +4,6 @@ Martin W. Kirst <master_jaf@users.sourceforge.net>
 v1.0, 2011-06
 
 
-
-
-
-:numbered!:
-[abstract]
 Abstract
 --------
 SCS Reader is an OSGI compatible Java library which is able to read,
@@ -17,6 +12,13 @@ The implementation also offers some converters to transform such
 streams into Text, PDF, RTF or other formats. At the current state
 it supports all features of the SCS 5256 printer standard.
 
+There are also renderer for Java Swing or Eclipse SWT available
+
+### Screenshot
+
+Example of a spool file within a SWT [StyledText](https://help.eclipse.org/2020-12/nftopic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/custom/StyledText.html) widget
+
+![](./readme.swt-widget.jpeg)
 
 
 Usage
@@ -24,22 +26,19 @@ Usage
 This project is designed to be an easy drop in replacement for 
 projects with existing PDF view or export functionality.
 The implementation design was inspired by the
-http://jcp.org/en/jsr/detail?id=173[Java(TM) Streaming API for XML]
+[Java(TM) Streaming API for XML](http://jcp.org/en/jsr/detail?id=173)
 Thus it's fast and very flexible. Additionally, one main
 difference to any other implementation in this area is the fact,
 that the SCS data streams pretty soon are converted
 to Unicode and further processing
 is all done in unicode. Therefore it's worthwhile to use this
 library in multilingual environments.
-indexterm:[Usage]
-
 
 
 Example Text-Printer
 --------------------
 
-[source,java]
--------------------------------------------------------------------------------------------------------------
+```java
 import java.io.File;
 import java.io.FileWriter;
 
@@ -86,18 +85,13 @@ public class ExampleTextPrinter {
 		fw.close();
 	}
 }
--------------------------------------------------------------------------------------------------------------
-
-<1> provide your spooled file here
-
-
+```
 
 
 Example PDF-Printer
 --------------------
 
-[source,java]
--------------------------------------------------------------------------------------------------------------
+```java
 import java.io.FileOutputStream;
 
 import net.scs.reader.EndOfFileSignal;
@@ -156,32 +150,27 @@ public class ExamplePdfPrinter {
 		pdfdoc.close();
 		pdfwriter.close();
 	}
--------------------------------------------------------------------------------------------------------------
-
-<1> provide your spooled file here
+```
 
 
 Development
 -----------
 
-Project Setup
-~~~~~~~~~~~~~
+### Project Setup
 
 SCS Reader was developed using Eclipse IDE.
 Thus, the two plugins "net.scs.reader" and "unittest.net.scs.reader"
 are independent Eclipse projects.
 
 
-Requirements
-~~~~~~~~~~~~
+### Requirements
 
 * Java v1.6+
 * GIT, recommended as Eclipse-Plugin and command line tool
 * Eclipse Helios (v3.6+)
 
 
-Dependencies
-~~~~~~~~~~~~
+### Dependencies
 
 * JTOpen Framework v6.7+ (http://jt400.sourceforge.net/)
 * iText v2.1.7 (http://itextpdf.com/)
@@ -189,8 +178,7 @@ Dependencies
 NOTE: iText newer version 5.x is not yet supported
 
 
-Setup required libraries within Eclipse
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Setup required libraries within Eclipse
 
 1. You have to download the required libraries
 2. Create a new java project called +wrapper-req-libs+
@@ -204,9 +192,46 @@ Once you've converted the requiered 'JARs'
 into a plugin project, your workspace should be error free and
 you should be able to start hacking on this project.
 
+### Additional Documentation
 
-indexterm:[example-text-printer]
+#### Feature sets per printer type, ordered/shown in hierarchical order
 
+![](./readme.featureset.svg)
 
-[index]
+<div hidden>
+```
+@startuml
+
+' title Feature sets per printer type, ordered/shown in hierarchical order
+
+Object Printer_5256
+Object Printer_5224
+Object Printer_5219
+Object Printer_5553
+Object Printer_3812
+
+Printer_5224 : +CPI
+Printer_5224 : +LPI
+
+Printer_5219 : +Margins
+Printer_5219 : +form size & type
+Printer_5219 : +drawer number
+
+Printer_5553 : +rotation
+Printer_5553 : +grid lines
+Printer_5553 : +font scaling
+Printer_5553 : +DBCS
+
+Printer_3812 : + bold
+Printer_3812 : + duplex
+Printer_3812 : + text orientation
+
+Printer_5256 -- Printer_5224 : < extends
+Printer_5224 -- Printer_5219 : < extends
+Printer_5224 -- Printer_5553 : < extends
+Printer_5553 -- Printer_3812 : < extends
+
+@enduml
+```
+</div>
 
