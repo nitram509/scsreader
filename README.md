@@ -198,6 +198,7 @@ you should be able to start hacking on this project.
 ![](./readme.featureset.svg)
 
 <div hidden>
+<!--
 ```
 @startuml
 
@@ -236,4 +237,4 @@ Printer_5553 -- Printer_3812 : < extends
 @enduml
 ```
 </div>
-
+-->
